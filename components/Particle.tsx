@@ -46,12 +46,12 @@ const ParticleJs = () => {
       },
 
       move: {
-        direction: "none",
+        direction: "",
         enable: true,
         outModes: {
           default: "bounce",
         },
-        random: true,
+        random: false,
         speed: 4,
         straight: false,
       },
@@ -69,7 +69,7 @@ const ParticleJs = () => {
         type: "circle",
       },
       size: {
-        value: { min: 2, max: 8 },
+        value: { min: 2, max: 10 },
       },
     },
     detectRetina: true,
