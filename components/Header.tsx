@@ -14,6 +14,7 @@ import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
+import { useEffect, useRef } from "react";
 const Header = () => {
   type navContent = {
     name: string;
@@ -39,8 +40,29 @@ const Header = () => {
   ];
 
   const path = usePathname();
+
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (navRef.current) {
+        if (window.scrollY) {
+          navRef.current.classList.add("opacity-100");
+        } else {
+          navRef.current.classList.remove("opacity-100");
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    console.log(window.scrollY);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [navRef]);
   return (
-    <div className="border-b border-white/20 sticky top-0 z-50 bg-black/60">
+    <div
+      ref={navRef}
+      className="border-b opacity-0 border-white/20 sticky top-0 z-50 bg-black/60"
+    >
       <div className="flex justify-between p-4 lg:px-16 xl:max-w-7xl xl:mx-auto items-center">
         <Link href={"/"}>
           <h1 className="text-ui-purple-50 text-base font-bold tracking-wider">
@@ -54,7 +76,7 @@ const Header = () => {
                 <p
                   className={cn(
                     path === item.href && "font-bold",
-                    "text-sm py-2 px-4 rounded-md font-semibold"
+                    "text-sm py-2 px-4 font-semibold"
                   )}
                 >
                   {item.name}
@@ -77,7 +99,7 @@ const Header = () => {
                     <Link href={item.href} key={index}>
                       <div
                         className={cn(
-                          "text-base flex items-center justify-between font-medium p-2 tracking-wider rounded-md",
+                          "text-base flex items-center justify-between font-medium p-2 tracking-wider",
                           path === item.href && " text-ui-purple-50 font-bold"
                         )}
                       >
