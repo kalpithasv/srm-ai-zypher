@@ -21,6 +21,7 @@ const config = {
       colors: {
         ui: {
           primary: "#1db954",
+          lightBg: "#F5FEFD",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -6,7 +6,7 @@ const EventsDivider = () => {
     <Marquee
       direction="right"
       gradientColor="white"
-      className="w-screen h-fit bg-[#F5FEFD] text-black p-4"
+      className="w-screen h-fit bg-ui-lightBg text-black p-4"
       speed={100}
       pauseOnHover
       autoFill
