@@ -19,7 +19,6 @@ const EventCard = ({ event }: EventCardProps) => {
           referrerPolicy="origin-when-cross-origin"
           className="w-fit h-fit rounded-t-lg"
         />
-
         <div className="p-4 flex flex-col gap-4">
           <p className="text-2xl">{event.title}</p>
           <p className="text-sm line-clamp-3">{event.desc}</p>

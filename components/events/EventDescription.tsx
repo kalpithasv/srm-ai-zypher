@@ -3,12 +3,13 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import {
+  ArrowBigUp,
   CalendarDays,
-  ClipboardCheckIcon,
   Clock,
   MapPin,
   UserPlus,
 } from "lucide-react";
+import RegisterEventModal from "./RegisterEventModal";
 
 interface EventDescriptionProps {
   event: EventType;
@@ -30,10 +31,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
       <div className="container-fix">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <p className="text-lg  md:text-3xl font-semibold">{event.title}</p>
-          <Button className="flex items-center gap-1">
-            <p>Register</p>
-            <ClipboardCheckIcon />
-          </Button>
+          <RegisterEventModal />
         </div>
 
         <div className="my-8 flex flex-col md:flex-row md:items-center md:justify-between gap-1">

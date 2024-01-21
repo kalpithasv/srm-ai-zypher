@@ -72,8 +72,6 @@ const RegistrationForm = ({ name, email }: RegistrationFormProps) => {
         toast("Error registering User");
         console.log(err);
       });
-
-    console.log(values);
   }
 
   return (
