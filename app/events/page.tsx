@@ -1,9 +1,22 @@
 import { db } from "@/backend/firebase";
 import EventCard from "@/components/events/EventCard";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const EventsPage = async () => {
+  const session = await getServerSession();
+  console.log(session);
+  if (session) {
+    const docRef = doc(db, "users", session.user?.email!);
+    const currentUser = await getDoc(docRef);
+
+    if (currentUser.exists() && currentUser.data().registered === false)
+      return redirect("/register");
+    console.log("first");
+  }
+
   const eventsRef = collection(db, "events");
   const eventsData = await getDocs(eventsRef);
 

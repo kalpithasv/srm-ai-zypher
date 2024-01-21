@@ -2,8 +2,8 @@ import EventsDescription from "@/components/events/EventDescription";
 
 import { db } from "@/backend/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import Error from "next/error";
-import { parse } from "path";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 interface EventsDescriptionPageProps {
   params: {
@@ -14,6 +14,17 @@ interface EventsDescriptionPageProps {
 const EventsDescriptionPage = async ({
   params,
 }: EventsDescriptionPageProps) => {
+  const session = await getServerSession();
+  console.log(session);
+  if (session) {
+    const docRef = doc(db, "users", session.user?.email!);
+    const currentUser = await getDoc(docRef);
+
+    if (currentUser.exists() && currentUser.data().registered === false)
+      return redirect("/register");
+    console.log("first");
+  }
+
   const eventId = params.eventId;
   const eventRef = doc(db, "events", eventId);
   const eventData = await getDoc(eventRef);
