@@ -19,12 +19,12 @@ const EventsBar = () => {
         height={1080}
         className="w-full h-full absolute top-0 -z-0 opacity-20 object-cover object-center"
       />
-      <div className="container">
+      <div className="container-fix">
         <h1 className="text-center text-2xl font-semibold underline underline-offset-8 decoration-ui-primary">
           Events Category
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 container px-0 md:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 container-fix px-0 md:px-16 xl:max-w-6xl">
           <Card
             title="Technical Events"
             Icon={TerminalSquareIcon}

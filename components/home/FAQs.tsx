@@ -35,12 +35,12 @@ const FAQs = () => {
   ];
   return (
     <div className="w-screen bg-black">
-      <div className="container">
+      <div className="container-fix">
         <h1 className="text-center text-2xl text-white font-semibold underline underline-offset-8 decoration-ui-primary">
           General FAQs
         </h1>
 
-        <div className="border mt-8 container max-w-5xl rounded-lg">
+        <div className="border mt-8 container-fix max-w-5xl rounded-lg">
           <Accordion type="single" collapsible>
             {faqs.map(({ question, answer }: faqType, index: number) => {
               return (

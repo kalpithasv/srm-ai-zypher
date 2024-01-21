@@ -80,7 +80,7 @@
     @apply min-h-[calc(100vh-3.55rem)] md:min-h-[calc(100vh-4rem)];
   }
 
-  .container {
-    @apply p-4 md:p-16 xl:max-w-7xl xl:mx-auto;
+  .container-fix {
+    @apply p-4 md:p-16 xl:max-w-7xl xl:mx-auto w-full;
   }
 }
