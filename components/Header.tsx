@@ -55,7 +55,6 @@ const Header = () => {
     };
     window.addEventListener("scroll", handleScroll);
 
-    console.log(window.scrollY);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navRef, path]);
 
