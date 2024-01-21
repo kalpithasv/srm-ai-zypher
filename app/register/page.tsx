@@ -1,12 +1,17 @@
+import { db } from "@/backend/firebase";
 import RegistrationForm from "@/components/register/RegistrationForm";
+import { doc, getDoc } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 const RegisterPage = async () => {
   const session = await getServerSession();
+  if (session) {
+    const docRef = doc(db, "users", session.user?.email!);
+    const currentUser = await getDoc(docRef);
 
-  if (!session) {
-    redirect("/");
+    if (currentUser.exists() && currentUser.data().registered === true)
+      return redirect("/");
   }
 
   return (
@@ -16,8 +21,8 @@ const RegisterPage = async () => {
       </h1>
 
       <RegistrationForm
-        name={session.user?.name!}
-        email={session.user?.email!}
+        name={session?.user?.name!}
+        email={session?.user?.email!}
       />
     </div>
   );

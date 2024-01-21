@@ -3,6 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import SignoutButton from "@/components/dashboard/SignOutBtn";
 
 const DashboardPage = async () => {
   const session = await getServerSession();
@@ -20,7 +21,7 @@ const DashboardPage = async () => {
       return (
         <div className="h-fix w-screen container-fix">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="container-fix p-4 mx-auto w-full md:w-fit flex flex-col md:flex-row items-center gap-2 border border-white/30 rounded-lg">
+            <div className="container-fix p-4 mx-auto w-full md:w-fit flex flex-col md:flex-row items-center gap-4 border border-white/30 rounded-lg">
               <Image
                 src={session?.user?.image!}
                 alt="profile-pic"
@@ -32,6 +33,7 @@ const DashboardPage = async () => {
               <div className="flex flex-col">
                 <p className="font-semi-bold">{session?.user?.name}</p>
                 <p className="font-semi-bold">{session?.user?.email}</p>
+                <SignoutButton />
               </div>
             </div>
             <div className="container-fix p-4 mx-auto w-full md:w-fit grid grid-cols-1 gap-2 border border-white/30 rounded-lg">

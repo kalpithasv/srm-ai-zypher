@@ -12,8 +12,17 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ profile }) {
       const docRef = doc(db, "users", profile?.email!);
-
-      setDoc(docRef, { ...profile, registered: false }, { merge: true });
+      const currentUser = await getDoc(docRef);
+      console.log(currentUser.data());
+      if (currentUser?.data()?.registered) {
+        return true;
+      } else {
+        await setDoc(
+          docRef,
+          { ...profile, registered: false },
+          { merge: true }
+        );
+      }
       return true;
     },
   },
