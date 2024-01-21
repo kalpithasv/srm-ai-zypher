@@ -1,4 +1,5 @@
-import Events from "@/components/home/Events";
+import EventsBar from "@/components/home/EventsBar";
+import Events from "@/components/home/EventsDivider";
 import Hero from "@/components/home/Hero";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main className="">
       <Hero />
       <Events />
+      <EventsBar />
     </main>
   );
 }

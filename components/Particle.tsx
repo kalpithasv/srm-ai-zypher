@@ -19,61 +19,7 @@ const ParticleJs = () => {
     []
   );
 
-  const options = {
-    fpsLimit: 240,
-    interactivity: {
-      events: {
-        onClick: {
-          enable: true,
-          mode: "repulse",
-        },
-        onHover: {
-          enable: true,
-          mode: "",
-        },
-        resize: true,
-      },
-      modes: {
-        repulse: {
-          distance: 150,
-          duration: 0.5,
-        },
-      },
-    },
-    particles: {
-      color: {
-        value: "#06ff00",
-      },
-
-      move: {
-        direction: "",
-        enable: true,
-        outModes: {
-          default: "bounce",
-        },
-        random: false,
-        speed: 4,
-        straight: false,
-      },
-      number: {
-        density: {
-          enable: true,
-          area: 400,
-        },
-        value: 80,
-      },
-      opacity: {
-        value: 0.5,
-      },
-      shape: {
-        type: "circle",
-      },
-      size: {
-        value: { min: 2, max: 10 },
-      },
-    },
-    detectRetina: true,
-  };
+  const options = require("@/assets/particles_final.json");
 
   return (
     <Particles
@@ -83,7 +29,6 @@ const ParticleJs = () => {
       style={{
         zIndex: -1,
       }}
-      // @ts-ignore
       options={options}
     />
   );

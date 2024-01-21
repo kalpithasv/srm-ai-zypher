@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import ParticleJs from "@/components/Particle";
+
 import Header from "@/components/Header";
 
 const mont = Montserrat({ subsets: ["latin"] });
@@ -19,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={mont.className}>
-        <ParticleJs />
         <Header />
         {children}
       </body>
