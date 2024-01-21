@@ -81,6 +81,6 @@
   }
 
   .container {
-    @apply p-4 md:p-16;
+    @apply p-4 md:p-16 xl:max-w-7xl xl:mx-auto;
   }
 }

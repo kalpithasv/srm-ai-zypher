@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 
 const EventsBar = () => {
   return (
-    <div className="h-fix w-screen relative bg-black">
+    <div className="h-full w-screen relative bg-black">
       <Image
         src={BG}
         alt="bg-image"
