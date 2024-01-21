@@ -8,7 +8,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.JWT_SECRET!,
+  secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
     async signIn({ profile }) {
       const docRef = doc(db, "users", profile?.email!);
