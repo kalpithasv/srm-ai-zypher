@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -43,6 +43,8 @@ const Header = () => {
   const path = usePathname();
 
   const navRef = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,7 +93,9 @@ const Header = () => {
             );
           })}
           <Button
-            onClick={() => (session?.user ? signOut() : signIn("google"))}
+            onClick={() =>
+              session?.user ? router.push("/dashboard") : signIn("google")
+            }
             className="font-bold"
           >
             {session?.user ? "View Dashboard" : "Login"}
@@ -120,7 +124,16 @@ const Header = () => {
                   );
                 })}
                 <SheetFooter className="mt-5">
-                  <Button>Login</Button>
+                  <Button
+                    onClick={() =>
+                      session?.user
+                        ? router.push("/dashboard")
+                        : signIn("google")
+                    }
+                    className="font-bold"
+                  >
+                    {session?.user ? "View Dashboard" : "Login"}
+                  </Button>
                 </SheetFooter>
               </SheetDescription>
             </SheetHeader>

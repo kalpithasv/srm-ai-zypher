@@ -15,7 +15,6 @@ interface EventDescriptionProps {
 }
 
 const EventDescription = ({ event }: EventDescriptionProps) => {
-  console.log(event);
   return (
     <div>
       <div className="lg:max-w-7xl lg:mx-auto lg:px-16 lg:pt-16">

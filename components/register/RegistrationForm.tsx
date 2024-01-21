@@ -15,6 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
+import { db } from "@/backend/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { toast } from "sonner";
+import { redirect, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
@@ -38,15 +42,37 @@ interface RegistrationFormProps {
 }
 
 const RegistrationForm = ({ name, email }: RegistrationFormProps) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: name,
-      email: email,
+      name: name || "",
+      email: email || "",
+      university: "",
+      department: "",
+      regNum: "",
+      contact: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const docRef = doc(db, "users", email);
+    setDoc(
+      docRef,
+      { ...values, registered: true },
+      {
+        merge: true,
+      }
+    )
+      .then(() => {
+        toast("User Registered Sucessfully");
+        router.replace("/dashboard");
+      })
+      .catch((err) => {
+        toast("Error registering User");
+        console.log(err);
+      });
+
     console.log(values);
   }
 

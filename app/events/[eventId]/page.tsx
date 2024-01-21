@@ -15,14 +15,12 @@ const EventsDescriptionPage = async ({
   params,
 }: EventsDescriptionPageProps) => {
   const session = await getServerSession();
-  console.log(session);
   if (session) {
     const docRef = doc(db, "users", session.user?.email!);
     const currentUser = await getDoc(docRef);
 
     if (currentUser.exists() && currentUser.data().registered === false)
       return redirect("/register");
-    console.log("first");
   }
 
   const eventId = params.eventId;

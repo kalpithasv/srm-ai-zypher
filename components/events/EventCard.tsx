@@ -8,8 +8,6 @@ interface EventCardProps {
 }
 
 const EventCard = ({ event }: EventCardProps) => {
-  console.log(event);
-
   return (
     <Link href={`/events/${event.id}`}>
       <div className="border border-white/20 rounded-lg hover:scale-105 duration-300 ease-in-out transition-all cursor-pointer active:scale-100">

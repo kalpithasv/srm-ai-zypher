@@ -7,14 +7,13 @@ import { redirect } from "next/navigation";
 
 const EventsPage = async () => {
   const session = await getServerSession();
-  console.log(session);
+
   if (session) {
     const docRef = doc(db, "users", session.user?.email!);
     const currentUser = await getDoc(docRef);
 
     if (currentUser.exists() && currentUser.data().registered === false)
       return redirect("/register");
-    console.log("first");
   }
 
   const eventsRef = collection(db, "events");
