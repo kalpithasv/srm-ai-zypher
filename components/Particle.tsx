@@ -19,7 +19,7 @@ const ParticleJs = () => {
     []
   );
 
-  const options = require("@/assets/particles_final.json");
+  const options = require("@/public/assets/particles_final.json");
 
   return (
     <Particles

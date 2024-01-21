@@ -45,7 +45,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (navRef.current) {
+      if (navRef.current && path == "/") {
         if (window.scrollY) {
           navRef.current.classList.add("opacity-100");
         } else {
@@ -57,11 +57,15 @@ const Header = () => {
 
     console.log(window.scrollY);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navRef]);
+  }, [navRef, path]);
+
   return (
     <div
       ref={navRef}
-      className="border-b opacity-0 border-white/20 sticky top-0 z-50 bg-black/95"
+      className={cn(
+        path == "/" ? "opacity-0" : "opacity-100",
+        "border-b  border-white/20 sticky top-0 z-50 bg-black/95"
+      )}
     >
       <div className="flex justify-between p-4 lg:px-16 xl:max-w-7xl xl:mx-auto items-center">
         <Link href={"/"}>
