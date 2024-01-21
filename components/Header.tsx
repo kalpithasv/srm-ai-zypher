@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 const Header = () => {
   type navContent = {
     name: string;
@@ -58,6 +59,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navRef, path]);
 
+  const { data: session } = useSession();
+
   return (
     <div
       ref={navRef}
@@ -87,7 +90,12 @@ const Header = () => {
               </Link>
             );
           })}
-          <Button className="font-bold">Login</Button>
+          <Button
+            onClick={() => (session?.user ? signOut() : signIn("google"))}
+            className="font-bold"
+          >
+            {session?.user ? "View Dashboard" : "Login"}
+          </Button>
         </div>
         <Sheet>
           <SheetTrigger className="md:hidden">

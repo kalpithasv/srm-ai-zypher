@@ -28,4 +28,5 @@ type EventType = {
   id: string;
   venue: string;
   time: string;
+  type: "technical" | "non-technical" | "hackathon";
 };

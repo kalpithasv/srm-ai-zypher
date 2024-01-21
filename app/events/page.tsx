@@ -20,6 +20,7 @@ const EventsPage = async () => {
       banner: data.banner,
       venue: data.venue,
       time: data.time,
+      type: data.type,
     };
   });
 
