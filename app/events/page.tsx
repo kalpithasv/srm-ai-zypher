@@ -12,12 +12,14 @@ const EventsPage = async () => {
     return {
       id: event.id,
       title: data.title,
-      description: data.desc,
+      desc: data.desc,
       team_size: data.team_size,
       student_co: data.student_co,
       faculty_co: data.faculty_co,
       entry_fee: data.entry_fee,
       banner: data.banner,
+      venue: data.venue,
+      time: data.time,
     };
   });
 

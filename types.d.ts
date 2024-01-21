@@ -10,8 +10,11 @@ type faqType = {
 
 type EventType = {
   title: string;
-  description: string;
-  team_size: [number, number];
+  desc: string;
+  team_size: {
+    max: number;
+    min: number;
+  };
   student_co: {
     name: string;
     contact: string;
@@ -23,4 +26,6 @@ type EventType = {
   entry_fee: number;
   banner: string;
   id: string;
+  venue: string;
+  time: string;
 };
