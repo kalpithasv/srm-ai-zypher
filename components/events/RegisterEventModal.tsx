@@ -36,7 +36,7 @@ import Image from "next/image";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "@/backend/firebase";
 import { useSession } from "next-auth/react";
-import { DocumentData, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -47,16 +47,14 @@ interface RegisterEventModalProps {
 export default function RegisterEventModal({ event }: RegisterEventModalProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const { data: session } = useSession();
 
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button
-            suppressHydrationWarning
-            className={cn("flex items-center gap-1")}
-          >
-            Register
+          <Button disabled={!session} className={cn("flex items-center gap-1")}>
+            {session ? "Register" : "Login to Register for this event"}
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
