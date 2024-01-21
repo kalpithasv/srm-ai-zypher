@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { ArrowBigUp, Copy } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -33,8 +33,18 @@ import {
   FormMessage,
 } from "../ui/form";
 import Image from "next/image";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "@/backend/firebase";
+import { useSession } from "next-auth/react";
+import { DocumentData, doc, setDoc } from "firebase/firestore";
+import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
-export default function RegisterEventModal() {
+interface RegisterEventModalProps {
+  event: EventType;
+}
+
+export default function RegisterEventModal({ event }: RegisterEventModalProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -42,9 +52,11 @@ export default function RegisterEventModal() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="flex items-center gap-1">
-            <p>Register</p>
-            <ArrowBigUp />
+          <Button
+            suppressHydrationWarning
+            className={cn("flex items-center gap-1")}
+          >
+            Register
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -73,7 +85,7 @@ export default function RegisterEventModal() {
               </div>
             </div>
           </DialogHeader>
-          <ProfileForm />
+          <ProfileForm event={event} />
         </DialogContent>
       </Dialog>
     );
@@ -115,7 +127,7 @@ export default function RegisterEventModal() {
             </div>
           </div>
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        <ProfileForm event={event} className="px-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button className="bg-white/30 text-white" variant="ghost">
@@ -128,31 +140,126 @@ export default function RegisterEventModal() {
   );
 }
 
-const formSchema = z.object({
-  txtId: z.string().min(2).max(50),
-  image: z.string().min(2).max(50),
-});
+interface ProfileFormProps extends React.ComponentProps<"form"> {
+  event: EventType;
+}
 
-function ProfileForm({ className }: React.ComponentProps<"form">) {
-  const [screenshot, setScreenshot] = useState<Blob | MediaSource>();
+function ProfileForm({ className, event }: ProfileFormProps) {
+  const defineTeammates = Array(event.team_size?.max)
+    .fill(0)
+    .map((_, index) => {
+      return event.team_size.min < index + 1
+        ? z.string()
+        : z.string().min(2).max(50);
+    });
+  const defineTeammatesKeys = Array(event.team_size?.max)
+    .fill(0)
+    .map((_, index) => {
+      return `teammate${index + 1}`;
+    });
+
+  const result = Object.assign(
+    // @ts-ignore
+    ...defineTeammatesKeys.map((k, i) => ({ [k]: defineTeammates[i] }))
+  );
+
+  const formSchema = z.object({
+    txtId: z.string().min(2).max(50),
+    image: z.string().min(2).max(50),
+    ...result,
+  });
+
+  const [screenshot, setScreenshot] = useState<
+    Blob | Uint8Array | ArrayBuffer | MediaSource
+  >();
+  const { data: session } = useSession();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       txtId: "",
       image: "",
+      ...Object.assign(
+        // @ts-ignore
+        ...defineTeammatesKeys.map((k, i) => ({ [k]: "" }))
+      ),
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+
+    const screenshotRef = ref(
+      storage,
+      `payments/${session?.user?.email + "-" + values.txtId}`
+    );
+
+    uploadBytes(screenshotRef, screenshot! as Blob | Uint8Array | ArrayBuffer)
+      .then((response) => {
+        const ref = response.ref;
+
+        getDownloadURL(ref).then((url) => {
+          const newPaymentRef = doc(
+            db,
+            "users",
+            session?.user?.email!,
+            "payments",
+            values.txtId
+          );
+          setDoc(
+            newPaymentRef,
+            {
+              paymentScreenshot: url,
+              eventId: event.id,
+              ...values,
+              verificationStatus: "pending",
+            },
+            { merge: true }
+          )
+            .then(() => {
+              toast("Payment screenshot uploaded successfully");
+              form.reset();
+            })
+            .catch((err) => {
+              console.log(err);
+              toast("Uploading Payment Screenshot failed");
+            });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="gap-4 grid grid-cols-1 md:flex md:flex-col px-4 md:px-0"
+        className=" grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0"
       >
+        {defineTeammatesKeys.map((teammate: string, index: number) => {
+          return (
+            <FormField
+              key={index}
+              control={form.control}
+              // @ts-ignore
+              name={teammate}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Teammate {index + 1} name{" "}
+                    {event.team_size.min > index && (
+                      <span className="text-red-500">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          );
+        })}
         <FormField
           control={form.control}
           name="txtId"
@@ -192,14 +299,15 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
 
         {screenshot && (
           <Image
-            src={URL.createObjectURL(screenshot)}
+            src={URL.createObjectURL(screenshot as Blob | MediaSource)}
             width={1920}
             height={1080}
             alt="screenshot"
+            className="md:col-span-2"
           />
         )}
 
-        <Button className="md:col-span-2" type="submit">
+        <Button className="md:col-span-2 mt-2" type="submit">
           Submit
         </Button>
       </form>

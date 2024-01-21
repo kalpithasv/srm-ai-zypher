@@ -1,7 +1,7 @@
 import EventsDescription from "@/components/events/EventDescription";
 
 import { db } from "@/backend/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -26,6 +26,13 @@ const EventsDescriptionPage = async ({
   const eventId = params.eventId;
   const eventRef = doc(db, "events", eventId);
   const eventData = await getDoc(eventRef);
+
+  const paymentRef = collection(db, "users", session?.user?.email!, "payments");
+  const paymentDetails = await getDocs(paymentRef);
+
+  const filteredPaymentDetails = paymentDetails.docs.map((paymentDetail) => {
+    if (paymentDetail.data().eventId === eventId) return paymentDetail.data();
+  });
 
   if (!eventData.exists()) return <p>Page not found</p>;
 
