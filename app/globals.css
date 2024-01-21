@@ -77,6 +77,6 @@
   }
 
   .h-fix {
-    @apply min-h-[calc(100vh-4.59rem)];
+    @apply min-h-[calc(100vh-3.55rem)] md:min-h-[calc(100vh-4rem)];
   }
 }

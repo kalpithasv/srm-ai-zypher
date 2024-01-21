@@ -61,7 +61,7 @@ const Header = () => {
   return (
     <div
       ref={navRef}
-      className="border-b opacity-0 border-white/20 sticky top-0 z-50 bg-black/90"
+      className="border-b opacity-0 border-white/20 sticky top-0 z-50 bg-black/95"
     >
       <div className="flex justify-between p-4 lg:px-16 xl:max-w-7xl xl:mx-auto items-center">
         <Link href={"/"}>
