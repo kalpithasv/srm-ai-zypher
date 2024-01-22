@@ -18,7 +18,7 @@ import { Button } from "../ui/button";
 import { db } from "@/backend/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),

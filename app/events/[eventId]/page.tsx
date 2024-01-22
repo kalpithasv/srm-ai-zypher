@@ -1,7 +1,7 @@
 import EventsDescription from "@/components/events/EventDescription";
 
 import { db } from "@/backend/firebase";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 

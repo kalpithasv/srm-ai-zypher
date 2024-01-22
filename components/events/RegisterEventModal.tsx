@@ -92,9 +92,8 @@ export default function RegisterEventModal({ event }: RegisterEventModalProps) {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className="flex items-center gap-1">
-          <p>Register</p>
-          <ArrowBigUp />
+        <Button disabled={!session} className="flex items-center gap-1">
+          <p>{session ? "Register" : "Login to Register for this event"}</p>
         </Button>
       </DrawerTrigger>
       <DrawerContent>
