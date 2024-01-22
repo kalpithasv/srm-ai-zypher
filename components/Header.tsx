@@ -14,8 +14,8 @@ import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
-import { useEffect, useRef } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+
 const Header = () => {
   type navContent = {
     name: string;
@@ -23,53 +23,27 @@ const Header = () => {
   };
   const navContents: navContent[] = [
     {
-      name: "Events",
-      href: "/events",
+      name: "Add Event",
+      href: "/add-event",
     },
     {
-      name: "About",
-      href: "/about",
+      name: "Payment Verifications",
+      href: "/verifications",
     },
     {
-      name: "Sponsors",
-      href: "/sponsors",
-    },
-    {
-      name: "Contact",
-      href: "/contact",
+      name: "Registrations",
+      href: "/registrations",
     },
   ];
 
   const path = usePathname();
-
-  const navRef = useRef<HTMLDivElement>(null);
-
   const router = useRouter();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (navRef.current && path == "/") {
-        if (window.scrollY) {
-          navRef.current.classList.add("opacity-100");
-        } else {
-          navRef.current.classList.remove("opacity-100");
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [navRef, path]);
 
   const { data: session } = useSession();
 
   return (
     <div
-      ref={navRef}
-      className={cn(
-        path == "/" ? "opacity-0" : "opacity-100",
-        "border-b  border-white/20 sticky top-0 z-50 bg-black/95"
-      )}
+      className={cn("border-b  border-white/20 sticky top-0 z-50 bg-black/95")}
     >
       <div className="flex justify-between p-4 lg:px-16 xl:max-w-7xl xl:mx-auto items-center">
         <Link href={"/"}>
@@ -93,12 +67,11 @@ const Header = () => {
             );
           })}
           <Button
-            onClick={() =>
-              session?.user ? router.push("/dashboard") : signIn("google")
-            }
+            variant={session?.user ? "destructive" : "default"}
+            onClick={() => (session?.user ? signOut() : signIn("google"))}
             className="font-bold"
           >
-            {session?.user ? "View Dashboard" : "Login"}
+            {session?.user ? session?.user.name : "Login"}
           </Button>
         </div>
         <Sheet>
@@ -125,14 +98,13 @@ const Header = () => {
                 })}
                 <SheetFooter className="mt-5">
                   <Button
+                    variant={session?.user ? "destructive" : "default"}
                     onClick={() =>
-                      session?.user
-                        ? router.push("/dashboard")
-                        : signIn("google")
+                      session?.user ? signOut() : signIn("google")
                     }
                     className="font-bold"
                   >
-                    {session?.user ? "View Dashboard" : "Login"}
+                    {session?.user ? session?.user.name : "Login"}
                   </Button>
                 </SheetFooter>
               </SheetDescription>
