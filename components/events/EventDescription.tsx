@@ -52,6 +52,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
           </div>
           <div className="flex items-center gap-2">
             <UserPlus className="md:w-8 md:h-8 w-5 h-5 text-ui-primary" />
+            <p className="font-medium text-base md:text-lg">Team Size:</p>
             <p className="font-medium text-base md:text-lg">
               {event.team_size.min} - {event.team_size.max}
             </p>

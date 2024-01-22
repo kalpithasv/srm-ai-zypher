@@ -6,14 +6,14 @@ import EventLogo from "@/images/event-logo.png";
 
 const LoadingComponent = () => {
   return (
-    <div className="h-screen w-screen fixed top-0 bg-black z-50 flex items-center justify-center gap-10">
+    <div className="h-screen w-screen fixed top-0 bg-black z-50 flex flex-col md:flex-row items-center justify-center gap-10">
       <Image
         src={EventLogo}
         alt="event-logo"
         referrerPolicy="no-referrer"
         width={1920}
         height={1080}
-        className="w-fit h-32 animate-pulse"
+        className="w-fit h-20 md:h-32 animate-pulse"
       />
       <ThreeCircles
         visible={true}
