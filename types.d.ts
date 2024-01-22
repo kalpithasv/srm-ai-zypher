@@ -30,3 +30,5 @@ type EventType = {
   time: string;
   type: "technical" | "non-technical" | "hackathon";
 };
+
+type ContactInfo = { name: string; contact: string };
