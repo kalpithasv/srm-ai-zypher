@@ -54,7 +54,7 @@ interface CardProps {
   };
 }
 
-export const Card = ({ contact }: CardProps) => {
+const Card = ({ contact }: CardProps) => {
   return (
     <div className='w-full h-80 border rounded-lg bg-[url("https://res.cloudinary.com/deibx8nfv/image/upload/v1679303863/texus2k23/eventcard_iemlil.png")] bg-cover bg-center bg-no-repeat rounded-md'>
       <div className="w-full h-full flex flex-col lg:flex-row lg:items-center justify-around p-4 bg-gradient-to-t lg:bg-gradient-to-l from-black/75 to-transparent">
