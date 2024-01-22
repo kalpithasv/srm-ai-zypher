@@ -1,10 +1,11 @@
 import { db } from "@/backend/firebase";
-import { Button } from "@/components/ui/button";
+import EventRegistrationCard from "@/components/registrations/EventRegisteredCard";
 import VerifyPaymentButton from "@/components/verifications/VerifyPaymentButton";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+
 import Image from "next/image";
 
-const VerificationsPage = async () => {
+const Registrations = async () => {
   async function fetchPaymentsFromUsersCollection() {
     const usersCollection = collection(db, "users");
 
@@ -19,7 +20,7 @@ const VerificationsPage = async () => {
 
         const payments = paymentsQuerySnapshot.docs
           .filter((paymentDoc) => {
-            return paymentDoc.data().verificationStatus === "pending";
+            return paymentDoc.data().verificationStatus === "completed";
           })
           .map((paymentDoc) => {
             return {
@@ -41,15 +42,17 @@ const VerificationsPage = async () => {
   }
 
   const data = await fetchPaymentsFromUsersCollection();
-
+  console.log(data);
   return (
     <div className="container-fix">
       <h1 className="underline underline-offset-8 decoration-ui-primary font-semibold text-2xl text-center">
-        Pending Verifications
+        Registrations
       </h1>
+
       <div>
         {data.map((verifications, index) => {
           if (verifications.payments.length === 0) return;
+
           return (
             <div className="border container-fix my-8 rounded-lg" key={index}>
               <p className="font-semibold text-ui-primary">
@@ -60,40 +63,23 @@ const VerificationsPage = async () => {
               </p>
 
               <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 py-4">
-                {verifications.payments.map((payment, index) => {
+                {verifications.payments.map(async (payment, index) => {
+                  // @ts-ignore
+                  const eventDoc = doc(db, "events", payment?.eventId);
+                  const events = await getDoc(eventDoc);
+
+                  if (!events) return;
+                  // @ts-ignore
+                  const banner = events?.data().banner;
+
                   return (
-                    <div
+                    <EventRegistrationCard
+                      // @ts-ignore
                       key={index}
-                      className="active:scale-95 transition-all ease-in-out duration-300 border rounded-lg cursor-pointer"
-                    >
-                      <Image
-                        //   @ts-ignore
-                        src={payment?.paymentScreenshot}
-                        alt="eventBanner"
-                        width={1920}
-                        height={1080}
-                        className="rounded-t-lg"
-                      />
-                      <div className="p-2">
-                        <p className="text-ui-primary font-semibold">
-                          Transaction ID:{" "}
-                          <span className="text-white">
-                            {payment?.paymentId}
-                          </span>
-                        </p>
-                        <p className="text-ui-primary font-semibold">
-                          Event ID: {/* @ts-ignore */}
-                          <span className="text-white">{payment?.eventId}</span>
-                        </p>
-                      </div>
-                      <VerifyPaymentButton
-                        /* @ts-ignore */
-                        paymentId={payment?.paymentId}
-                        /* @ts-ignore */
-                        eventId={payment?.eventId}
-                        email={verifications.userId}
-                      />
-                    </div>
+                      payment={payment}
+                      //   @ts-ignore
+                      verifications={verifications}
+                    />
                   );
                 })}
               </div>
@@ -105,4 +91,4 @@ const VerificationsPage = async () => {
   );
 };
 
-export default VerificationsPage;
+export default Registrations;
