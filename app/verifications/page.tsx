@@ -63,13 +63,19 @@ const VerificationsPage = async () => {
         Pending Verifications
       </h1>
       <div className="container-fix grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {filteredPendingData.map((verification, index) => {
-          return (
-            <div key={index}>
-              <DisplayCards verification={verification} />
-            </div>
-          );
-        })}
+        {filteredPendingData.length != 0 ? (
+          filteredPendingData.map((verification, index) => {
+            return (
+              <div key={index}>
+                <DisplayCards verification={verification} />
+              </div>
+            );
+          })
+        ) : (
+          <div className="text-center text-gray-500 font-bold md:col-span-2 lg:col-span-3">
+            No Pending Verifications
+          </div>
+        )}
       </div>
     </div>
   );
