@@ -46,7 +46,7 @@ function VerifyQr({
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Show QR</DialogTitle>
+            <DialogTitle>{eventTitle} QRCode</DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
           <QrCodeCreator
@@ -65,7 +65,7 @@ function VerifyQr({
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Show QR</DrawerTitle>
+          <DrawerTitle>{eventTitle} QRCode</DrawerTitle>
           <DrawerDescription></DrawerDescription>
         </DrawerHeader>
         <QrCodeCreator
