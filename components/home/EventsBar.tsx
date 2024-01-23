@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const EventsBar = () => {
   return (
@@ -58,6 +59,7 @@ interface CardProps {
 
 const Card = ({ className, title, description, Icon }: CardProps) => {
   const ICON = Icon;
+
   return (
     <div
       className={cn(
@@ -75,14 +77,16 @@ const Card = ({ className, title, description, Icon }: CardProps) => {
           <p className="space-y-6 text-center md:text-left font-semibold text-base line-clamp-2 leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
             {title}
           </p>
-          <Button
-            className="lg:ml-auto group-hover:text-white/90"
-            variant={"destructive"}
-          >
-            Explore
-          </Button>
+          <Link href={"/events"}>
+            <Button
+              className="lg:ml-auto group-hover:text-white/90"
+              variant={"destructive"}
+            >
+              Explore
+            </Button>
+          </Link>
         </div>
-        <div className="space-y-6 pt-5 text-base  text-justify leading-7 text-gray-600 transition-all duration-500 group-hover:text-white/90">
+        <div className="space-y-6 pt-5 text-sm text-justify text-gray-600 transition-all duration-500 group-hover:text-white/90">
           <p>{description}</p>
         </div>
       </div>

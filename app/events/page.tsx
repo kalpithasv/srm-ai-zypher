@@ -1,5 +1,6 @@
 import { db } from "@/backend/firebase";
 import EventCard from "@/components/events/EventCard";
+import { cn } from "@/lib/utils";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
@@ -52,14 +53,43 @@ const EventsPage = async () => {
         />
       </div>
       <div className="container-fix">
-        <h1 className="text-center md:text-left text-lg md:text-2xl font-semibold underline underline-offset-8 decoration-ui-primary">
-          Technical Events
-        </h1>
+        <div
+          className={cn(
+            events.filter((event) => event.type == "technical").length === 0
+              ? "hidden"
+              : ""
+          )}
+        >
+          <h1 className="text-center md:text-left text-lg md:text-2xl font-semibold underline underline-offset-8 decoration-ui-primary">
+            Technical Events
+          </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16">
-          {events.map((event, index) => {
-            return <EventCard key={index} event={event} />;
-          })}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16">
+            {events
+              .filter((event) => event.type == "technical")
+              .map((event, index) => {
+                return <EventCard key={index} event={event} />;
+              })}
+          </div>
+        </div>
+        <div
+          className={cn(
+            events.filter((event) => event.type == "non-technical").length === 0
+              ? "hidden"
+              : ""
+          )}
+        >
+          <h1 className="text-center md:text-left text-lg md:text-2xl font-semibold underline underline-offset-8 decoration-ui-primary">
+            Non Technical Events
+          </h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16">
+            {events
+              .filter((event) => event.type == "non-technical")
+              .map((event, index) => {
+                return <EventCard key={index} event={event} />;
+              })}
+          </div>
         </div>
       </div>
     </div>
