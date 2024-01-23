@@ -32,3 +32,12 @@ type EventType = {
 };
 
 type ContactInfo = { name: string; contact: string };
+
+type PaymentInfoType = {
+  eventId: string;
+  teammates: any;
+  paymentScreenshot: string;
+  image: string;
+  txtId: string;
+  verificationStatus: "pending" | "completed";
+};

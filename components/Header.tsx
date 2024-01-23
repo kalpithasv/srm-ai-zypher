@@ -2,6 +2,7 @@
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -37,7 +38,6 @@ const Header = () => {
   ];
 
   const path = usePathname();
-  const router = useRouter();
 
   const { data: session } = useSession();
 
@@ -81,19 +81,20 @@ const Header = () => {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Contents</SheetTitle>
-              <SheetDescription>
+              <div>
                 {navContents.map((item, index) => {
                   return (
-                    <Link href={item.href} key={index}>
-                      <div
+                    <SheetClose asChild key={index}>
+                      <Link
                         className={cn(
-                          "text-base flex items-center justify-between font-medium p-2 tracking-wider",
+                          "text-base flex items-start text-left justify-between font-medium p-2 tracking-wider",
                           path === item.href && " text-ui-purple-50 font-bold"
                         )}
+                        href={item.href}
                       >
-                        <p>{item.name}</p>
-                      </div>
-                    </Link>
+                        <div>{item.name}</div>
+                      </Link>
+                    </SheetClose>
                   );
                 })}
                 <SheetFooter className="mt-5">
@@ -107,7 +108,7 @@ const Header = () => {
                     {session?.user ? session?.user.name : "Login"}
                   </Button>
                 </SheetFooter>
-              </SheetDescription>
+              </div>
             </SheetHeader>
           </SheetContent>
         </Sheet>
