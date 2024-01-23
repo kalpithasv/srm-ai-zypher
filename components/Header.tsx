@@ -139,16 +139,18 @@ const Header = () => {
                   );
                 })}
                 <SheetFooter className="mt-5">
-                  <Button
-                    onClick={() =>
-                      session?.user
-                        ? router.push("/dashboard")
-                        : signIn("google")
-                    }
-                    className="font-bold"
-                  >
-                    {session?.user ? "View Dashboard" : "Login"}
-                  </Button>
+                  <SheetClose asChild>
+                    <Button
+                      onClick={() =>
+                        session?.user
+                          ? router.push("/dashboard")
+                          : signIn("google")
+                      }
+                      className="font-bold"
+                    >
+                      {session?.user ? "View Dashboard" : "Login"}
+                    </Button>
+                  </SheetClose>
                 </SheetFooter>
               </SheetDescription>
             </SheetHeader>
