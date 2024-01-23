@@ -2,7 +2,6 @@ import { db } from "@/backend/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { redirect } from "next/navigation";
 
 const authOptions: NextAuthOptions = {
   session: {
@@ -13,17 +12,11 @@ const authOptions: NextAuthOptions = {
     async signIn({ profile }) {
       const docRef = doc(db, "users", profile?.email!);
       const currentUser = await getDoc(docRef);
-      console.log(currentUser.data());
-      if (currentUser?.data()?.registered) {
-        return true;
-      } else {
-        await setDoc(
-          docRef,
-          { ...profile, registered: false },
-          { merge: true }
-        );
-      }
-      return true;
+      if (profile?.email === "vetrichanakyha2003@gmail.com") return true;
+
+      await setDoc(docRef, { ...profile, registered: false }, { merge: true });
+
+      return false;
     },
   },
   providers: [
