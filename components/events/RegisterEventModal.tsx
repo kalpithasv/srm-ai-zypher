@@ -39,6 +39,7 @@ import { useSession } from "next-auth/react";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface RegisterEventModalProps {
   event: EventType;
@@ -57,7 +58,7 @@ export default function RegisterEventModal({ event }: RegisterEventModalProps) {
             {session ? "Register" : "Login to Register for this event"}
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="w-full">
           <DialogHeader>
             <DialogTitle>Bank Details</DialogTitle>
             <div className="border p-4 rounded-lg">
@@ -163,7 +164,9 @@ function ProfileForm({ className, event }: ProfileFormProps) {
   const formSchema = z.object({
     txtId: z.string().min(2).max(50),
     image: z.string().min(2).max(50),
-    ...result,
+    teammates: z.object({
+      ...result,
+    }),
   });
 
   const [screenshot, setScreenshot] = useState<
@@ -175,10 +178,12 @@ function ProfileForm({ className, event }: ProfileFormProps) {
     defaultValues: {
       txtId: "",
       image: "",
-      ...Object.assign(
-        // @ts-ignore
-        ...defineTeammatesKeys.map((k, i) => ({ [k]: "" }))
-      ),
+      teammates: {
+        ...Object.assign(
+          // @ts-ignore
+          ...defineTeammatesKeys.map((k, i) => ({ [k]: "" }))
+        ),
+      },
     },
   });
 
@@ -229,85 +234,85 @@ function ProfileForm({ className, event }: ProfileFormProps) {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className=" grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0"
-      >
-        {defineTeammatesKeys.map((teammate: string, index: number) => {
-          return (
-            <FormField
-              key={index}
-              control={form.control}
-              // @ts-ignore
-              name={teammate}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Teammate {index + 1} name{" "}
-                    {event.team_size.min > index && (
-                      <span className="text-red-500">*</span>
-                    )}
-                  </FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          );
-        })}
-        <FormField
-          control={form.control}
-          name="txtId"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Transaction ID <span className="text-red-500">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="image"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Payment Screenshot <span className="text-red-500">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input
-                  // @ts-ignore
-                  onChangeCapture={(e) => setScreenshot(e.target?.files[0])}
-                  type="file"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {screenshot && (
-          <Image
-            src={URL.createObjectURL(screenshot as Blob | MediaSource)}
-            width={1920}
-            height={1080}
-            alt="screenshot"
-            className="md:col-span-2"
+      <ScrollArea className="h-72 w-full">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className=" grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0 mt-2"
+        >
+          {defineTeammatesKeys.map((teammate: string, index: number) => {
+            return (
+              <FormField
+                key={index}
+                control={form.control}
+                // @ts-ignore
+                name={`teammates.${teammate}`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      Teammate {index + 1} name{" "}
+                      {event.team_size.min > index && (
+                        <span className="text-red-500">*</span>
+                      )}
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            );
+          })}
+          <FormField
+            control={form.control}
+            name="txtId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Transaction ID <span className="text-red-500">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        )}
 
-        <Button className="md:col-span-2 mt-2" type="submit">
-          Submit
-        </Button>
-      </form>
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Payment Screenshot <span className="text-red-500">*</span>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    // @ts-ignore
+                    onChangeCapture={(e) => setScreenshot(e.target?.files[0])}
+                    type="file"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {screenshot && (
+            <Image
+              src={URL.createObjectURL(screenshot as Blob | MediaSource)}
+              width={1920}
+              height={1080}
+              alt="screenshot"
+              className="md:col-span-2  mx-auto"
+            />
+          )}
+          <Button className="md:col-span-2 mt-2" type="submit">
+            Submit
+          </Button>
+        </form>
+      </ScrollArea>
     </Form>
   );
 }
