@@ -109,13 +109,23 @@ const Header = () => {
             <SheetHeader>
               <SheetTitle>Contents</SheetTitle>
               <SheetDescription>
+                <Link href={"/"}>
+                  <div
+                    className={cn(
+                      "text-base flex items-center justify-between font-medium p-2 tracking-wider",
+                      path === "/" && " text-ui-primary font-bold"
+                    )}
+                  >
+                    <p>Home</p>
+                  </div>
+                </Link>
                 {navContents.map((item, index) => {
                   return (
                     <Link href={item.href} key={index}>
                       <div
                         className={cn(
                           "text-base flex items-center justify-between font-medium p-2 tracking-wider",
-                          path === item.href && " text-ui-purple-50 font-bold"
+                          path === item.href && " text-ui-primary font-bold"
                         )}
                       >
                         <p>{item.name}</p>
