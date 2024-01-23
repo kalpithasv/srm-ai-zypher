@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import VerifyPaymentButton from "./VerifyPaymentButton";
-import { Button } from "../ui/button";
+
 import VerifyButton from "./VerifyPaymentButton";
+import { usePathname } from "next/navigation";
 
 interface DisplayCardsProps {
   verification: any;
 }
 
 const DisplayCards = ({ verification }: DisplayCardsProps) => {
+  const pathname = usePathname();
   return (
     <div className="border">
       {verification.singleUserPayment.map((payment: any, index: number) => {
@@ -42,11 +43,12 @@ const DisplayCards = ({ verification }: DisplayCardsProps) => {
                 Payment Made by {verification.user.user.name}
               </p>
             </div>
-
-            <VerifyButton
-              email={verification.user.user.email}
-              payment={payment.payment}
-            />
+            {pathname === "/verifications" && (
+              <VerifyButton
+                email={verification.user.user.email}
+                payment={payment.payment}
+              />
+            )}
           </div>
         );
       })}

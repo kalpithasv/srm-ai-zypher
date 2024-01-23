@@ -1,94 +1,86 @@
 import { db } from "@/backend/firebase";
-import EventRegistrationCard from "@/components/registrations/EventRegisteredCard";
-import VerifyPaymentButton from "@/components/verifications/VerifyPaymentButton";
+
+import DisplayCards from "@/components/verifications/DisplayCards";
+
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
-import Image from "next/image";
+const RegistrationsPage = async () => {
+  const colRef = collection(db, "users");
+  const allUsersData = await getDocs(colRef);
 
-const Registrations = async () => {
-  async function fetchPaymentsFromUsersCollection() {
-    const usersCollection = collection(db, "users");
+  const paymentsPromise = allUsersData.docs.map(async (user) => {
+    const singleUserPaymentRef = collection(db, "users", user.id, "payments");
+    const singleUserPayment = await getDocs(singleUserPaymentRef);
 
-    try {
-      const usersQuerySnapshot = await getDocs(usersCollection);
+    const paymentsPromise = singleUserPayment.docs.map(async (userPayment) => {
+      const eventId = userPayment.data()?.eventId;
 
-      const paymentsPromises = usersQuerySnapshot.docs.map(async (userDoc) => {
-        const userId = userDoc.id;
-        const paymentsCollection = collection(db, "users", userId, "payments");
+      const eventDetailsRef = doc(db, "events", eventId);
+      const eventDetails = await getDoc(eventDetailsRef);
 
-        const paymentsQuerySnapshot = await getDocs(paymentsCollection);
+      return {
+        payment: userPayment.data(),
+        eventDetails: eventDetails.data(),
+      };
+    });
 
-        const payments = paymentsQuerySnapshot.docs
-          .filter((paymentDoc) => {
-            return paymentDoc.data().verificationStatus === "completed";
-          })
-          .map((paymentDoc) => {
-            return {
-              paymentId: paymentDoc.id,
-              ...paymentDoc.data(),
-            };
-          });
+    return {
+      user: user.data(),
+      singleUserPayment: await Promise.all(paymentsPromise),
+    };
+  });
 
-        return { userId, payments };
-      });
+  const completedVerifications = await Promise.all(paymentsPromise);
+  const filteredcompletedData = completedVerifications
+    .filter((userData) => {
+      if (userData.singleUserPayment.length !== 0) {
+        const completed = userData.singleUserPayment.filter(
+          (payment) => payment.payment.verificationStatus === "completed"
+        );
+        if (completed.length !== 0) {
+          return true;
+        }
+      }
+    })
+    .map((userData) => {
+      if (userData.singleUserPayment.length !== 0) {
+        const completed = userData.singleUserPayment.filter(
+          (payment) => payment.payment.verificationStatus === "completed"
+        );
+        if (completed.length !== 0) {
+          return {
+            user: userData,
+            singleUserPayment: completed,
+          };
+        }
+      }
+    });
 
-      const paymentsData = await Promise.all(paymentsPromises);
-
-      return paymentsData;
-    } catch (error) {
-      console.error("Error fetching payments:", error);
-      throw error;
-    }
-  }
-
-  const data = await fetchPaymentsFromUsersCollection();
-  console.log(data);
   return (
     <div className="container-fix">
       <h1 className="underline underline-offset-8 decoration-ui-primary font-semibold text-2xl text-center">
-        Registrations
+        Total Registrations{" "}
+        <span className="bg-ui-primary text-black px-4 py-1 rounded-full w-4 h-4">
+          {filteredcompletedData.length}
+        </span>
       </h1>
-
-      <div>
-        {data.map((verifications, index) => {
-          if (verifications.payments.length === 0) return;
-
-          return (
-            <div className="border container-fix my-8 rounded-lg" key={index}>
-              <p className="font-semibold text-ui-primary">
-                Email Id:{" "}
-                <span className="font-medium text-white">
-                  {verifications.userId}
-                </span>
-              </p>
-
-              <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 py-4">
-                {verifications.payments.map(async (payment, index) => {
-                  // @ts-ignore
-                  const eventDoc = doc(db, "events", payment?.eventId);
-                  const events = await getDoc(eventDoc);
-
-                  if (!events) return;
-                  // @ts-ignore
-                  const banner = events?.data().banner;
-
-                  return (
-                    <EventRegistrationCard
-                      // @ts-ignore
-                      key={index}
-                      payment={payment}
-                      //   @ts-ignore
-                      verifications={verifications}
-                    />
-                  );
-                })}
+      <div className="container-fix grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {filteredcompletedData.length != 0 ? (
+          filteredcompletedData.map((verification, index) => {
+            return (
+              <div key={index}>
+                <DisplayCards verification={verification} />
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <div className="text-center text-gray-500 font-bold md:col-span-2 lg:col-span-3">
+            No Registrations Yet
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Registrations;
+export default RegistrationsPage;
