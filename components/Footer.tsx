@@ -60,7 +60,7 @@ const Footer = () => {
                 Privacy Policy
               </Link>
               <Link
-                href={"/terms-conditions"}
+                href={"/terms-and-conditions"}
                 className="hover:underline cursor-pointer"
               >
                 Terms and Conditions
