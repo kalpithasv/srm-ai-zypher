@@ -16,7 +16,7 @@ const Hero = () => {
       />
       <div className="relative flex flex-col items-center justify-center h-fix gap-2 w-screen">
         <h1 className="text-center text-3xl font-bold md:text-5xl lg:text-7xl ">
-          AI ZYPHER
+          ZYPHER&apos;23
         </h1>
         <p className="text-center text-xl md:text-2xl font-medium">
           Unleash the future

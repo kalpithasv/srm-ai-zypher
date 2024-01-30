@@ -83,4 +83,8 @@
   .container-fix {
     @apply p-4 md:p-16 xl:max-w-7xl xl:mx-auto w-full;
   }
+
+  .gradient {
+    @apply bg-gradient-to-r from-ui-primary to-ui-secondary;
+  }
 }

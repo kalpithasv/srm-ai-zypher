@@ -11,7 +11,7 @@
     "opacity": 1
   },
   "backgroundMask": {
-    "composite": "destination-out",
+    "composite": "color",
     "cover": {
       "color": {
         "value": "#fff"
@@ -34,8 +34,8 @@
     "detectsOn": "window",
     "events": {
       "onClick": {
-        "enable": false,
-        "mode": []
+        "enable": true,
+        "mode": "attract"
       },
       "onDiv": {
         "selectors": [],
@@ -47,9 +47,9 @@
         "enable": false,
         "mode": [],
         "parallax": {
-          "enable": false,
-          "force": 2,
-          "smooth": 10
+          "enable": true,
+          "force": 30,
+          "smooth": 100
         }
       },
       "resize": {
@@ -181,7 +181,7 @@
       }
     },
     "color": {
-      "value": "#1db954",
+      "value": "#129ffb",
       "animation": {
         "h": {
           "count": 0,
@@ -278,9 +278,9 @@
       "enable": true,
       "gravity": {
         "acceleration": 9.81,
-        "enable": true,
+        "enable": false,
         "inverse": false,
-        "maxSpeed": 5
+        "maxSpeed": 50
       },
       "path": {
         "clamp": true,
@@ -323,7 +323,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 300
+      "value": 400
     },
     "opacity": {
       "value": 1,
@@ -436,7 +436,7 @@
     },
     "wobble": {
       "distance": 5,
-      "enable": false,
+      "enable": true,
       "speed": {
         "angle": 50,
         "move": 10
