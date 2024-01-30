@@ -48,7 +48,7 @@ const Header = () => {
       <div className="flex justify-between p-4 lg:px-16 xl:max-w-7xl xl:mx-auto items-center">
         <Link href={"/"}>
           <h1 className="text-ui-purple-50 text-base font-bold tracking-wider">
-            AI Zypher
+            Zypher&apos;24
           </h1>
         </Link>
         <div className="hidden md:inline-flex gap-4 items-center">

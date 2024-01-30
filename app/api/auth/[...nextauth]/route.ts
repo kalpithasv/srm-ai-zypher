@@ -10,12 +10,7 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
     async signIn({ profile }) {
-      const docRef = doc(db, "users", profile?.email!);
-      const currentUser = await getDoc(docRef);
       if (profile?.email === "vetrichanakyha2003@gmail.com") return true;
-
-      await setDoc(docRef, { ...profile, registered: false }, { merge: true });
-
       return false;
     },
   },
