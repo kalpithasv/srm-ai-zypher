@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "../ui/button";
 
 const Hero = () => {
@@ -11,7 +12,11 @@ const Hero = () => {
           Admin Dashboard
         </p>
 
-        <Button className="w-full max-w-xl mt-4">Main Website</Button>
+        <Button className="w-full max-w-xl mt-4">
+          <Link target="_blank" href={"https://aizypher.in"}>
+            Main Website
+          </Link>
+        </Button>
       </div>
     </div>
   );

@@ -20,8 +20,9 @@ const config = {
     extend: {
       colors: {
         ui: {
-          primary: "#1db954",
+          primary: "#129ffb",
           lightBg: "#F5FEFD",
+          secondary: "#01fffb",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
