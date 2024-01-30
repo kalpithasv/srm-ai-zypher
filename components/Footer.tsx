@@ -27,28 +27,28 @@ const Footer = () => {
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
               <h1 className="font-bold text-white">Categories</h1>
               <Link href={"/events"} className="hover:underline cursor-pointer">
-                Events
+                <p>Events</p>
               </Link>
               <Link href={"/about"} className="hover:underline cursor-pointer">
-                About
+                <p>About</p>
               </Link>
               <Link
                 href={"/sponsors"}
                 className="hover:underline cursor-pointer"
               >
-                Sponsors
+                <p>Sponsors</p>
               </Link>
             </div>
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
               <h1 className="font-bold text-white">Social Media</h1>
               <Link href={"/"} className="hover:underline cursor-pointer">
-                Email
+                <p>Email</p>
               </Link>
               <Link href={"/"} className="hover:underline cursor-pointer">
-                Whatsapp
+                <p>Whatsapp</p>
               </Link>
               <Link href={"/"} className="hover:underline cursor-pointer">
-                Instagram
+                <p>Instagram</p>
               </Link>
             </div>
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
@@ -57,16 +57,16 @@ const Footer = () => {
                 href={"/privacy-policy"}
                 className="hover:underline cursor-pointer"
               >
-                Privacy Policy
+                <p>Privacy Policy</p>
               </Link>
               <Link
                 href={"/terms-and-conditions"}
                 className="hover:underline cursor-pointer"
               >
-                Terms and Conditions
+                <p>Terms and Conditions</p>
               </Link>
               <Link href={"/"} className="hover:underline cursor-pointer">
-                Registration Procedure
+                <p>Registration Procedure</p>
               </Link>
             </div>
           </div>
