@@ -13,15 +13,14 @@ const Footer = () => {
     <div className="w-full bg-stone-900">
       <div className="p-4 md:p-16 xl:max-w-7xl xl:mx-auto">
         <div className="flex flex-col items-center text-center gap-8 md:flex-row md:justify-between lg:items-start lg:gap-8">
-          <div className="flex flex-col items-center gap-1 lg:items-start">
+          <div className="flex flex-col items-center gap-1 lg:items-center">
             <Image
               src={SRMLogo}
               alt="logo-image"
-              width={300}
-              height={300}
-              className="w-fit h-10"
+              width={1920}
+              height={1080}
+              className="w-fit h-20"
             />
-            <h1 className="text-nav font-light">Unleash the Future</h1>
           </div>
           <div className="flex flex-col gap-4 text-nav md:hidden lg:inline-flex lg:flex-row lg:flex-1 lg:justify-center  lg:text-left lg:gap-8">
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">

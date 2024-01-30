@@ -45,7 +45,7 @@ const EventsPage = async () => {
         alt="bg-image"
         width={1920}
         height={1080}
-        className="opacity-20 h-full w-full object-cover object-top fixed top-0 -z-50"
+        className="opacity-20 h-full w-full object-cover object-top absolute top-0 -z-50"
       />
       <div className="md:p-16 md:pb-0 xl:max-w-7xl xl:mx-auto">
         <Image

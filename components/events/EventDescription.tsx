@@ -23,7 +23,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
         src={event.banner}
         width={1920}
         height={1080}
-        className="w-full h-full fixed top-0 opacity-[0.03] -z-[1] object-cover object-center"
+        className="w-full h-full absolute top-0 opacity-[0.03] -z-[10] object-cover object-center"
       />
       <div className="lg:max-w-7xl lg:mx-auto lg:px-16 lg:pt-16">
         <Image
