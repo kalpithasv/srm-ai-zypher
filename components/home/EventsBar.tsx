@@ -1,3 +1,5 @@
+"use client";
+
 import BG from "@/images/eventsbar-bg.jpeg";
 import { cn } from "@/lib/utils";
 import {
@@ -9,6 +11,7 @@ import {
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const EventsBar = () => {
   return (
@@ -62,13 +65,19 @@ const Card = ({ className, title, description, Icon }: CardProps) => {
   const ICON = Icon;
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+      }}
       className={cn(
         className,
-        "group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:rounded-lg sm:px-10"
+        "group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-white/40 sm:mx-auto sm:rounded-lg sm:px-10"
       )}
     >
-      <span className="absolute top-10 z-0 h-20 w-20 invisible group-hover:visible rounded-full gradient transition-all duration-700 group-hover:scale-[30]"></span>
+      <span className="absolute top-10 z-0 h-20 w-20 invisible group-hover:visible rounded-full gradient transition-all duration-700 group-hover:w-full group-hover:h-full group-hover:scale-150"></span>
       <div className="relative z-10 ">
         <div className="flex flex-col lg:flex-row items-center gap-4">
           <span className="grid h-20 w-20 place-items-center rounded-full bg-ui-primary transition-all duration-300 group-hover:bg-ui-primary/90 group-hover:border group-hover:border-white/80">
@@ -90,6 +99,6 @@ const Card = ({ className, title, description, Icon }: CardProps) => {
           <p>{description}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

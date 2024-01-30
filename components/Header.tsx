@@ -35,10 +35,6 @@ const Header = () => {
       name: "Sponsors",
       href: "/sponsors",
     },
-    {
-      name: "Contact",
-      href: "/contact",
-    },
   ];
 
   const path = usePathname();
@@ -75,7 +71,7 @@ const Header = () => {
       <div className="flex justify-between p-4 lg:px-16 xl:max-w-7xl xl:mx-auto items-center">
         <Link href={"/"}>
           <h1 className="text-ui-purple-50 text-base font-bold tracking-wider">
-            AI Zypher
+            {`Zypher'24`}
           </h1>
         </Link>
         <div className="hidden md:inline-flex gap-4 items-center">
@@ -101,6 +97,15 @@ const Header = () => {
           >
             {session?.user ? "View Dashboard" : "Login"}
           </Button>
+          {session?.user && (
+            <Button
+              onClick={() => signOut()}
+              variant={"destructive"}
+              className="font-bold"
+            >
+              Signout
+            </Button>
+          )}
         </div>
         <Sheet>
           <SheetTrigger className="md:hidden">
