@@ -35,7 +35,7 @@ const EventsDescriptionPage = async ({
   } as EventType;
 
   return (
-    <div className="h-fix w-screen bg-black">
+    <div className="h-fix w-screen">
       <EventsDescription event={event} />
     </div>
   );

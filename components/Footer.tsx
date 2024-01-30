@@ -26,24 +26,48 @@ const Footer = () => {
           <div className="flex flex-col gap-4 text-nav md:hidden lg:inline-flex lg:flex-row lg:flex-1 lg:justify-center  lg:text-left lg:gap-8">
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
               <h1 className="font-bold text-white">Categories</h1>
-              <p className="hover:underline cursor-pointer">Events</p>
-              <p className="hover:underline cursor-pointer">About</p>
-              <p className="hover:underline cursor-pointer">Sponsors</p>
-              <p className="hover:underline cursor-pointer">Contact</p>
+              <Link href={"/events"} className="hover:underline cursor-pointer">
+                Events
+              </Link>
+              <Link href={"/about"} className="hover:underline cursor-pointer">
+                About
+              </Link>
+              <Link
+                href={"/sponsors"}
+                className="hover:underline cursor-pointer"
+              >
+                Sponsors
+              </Link>
             </div>
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
               <h1 className="font-bold text-white">Social Media</h1>
-              <p className="hover:underline cursor-pointer">Email</p>
-              <p className="hover:underline cursor-pointer">Whatsapp</p>
-              <p className="hover:underline cursor-pointer">Instagram</p>
+              <Link href={"/"} className="hover:underline cursor-pointer">
+                Email
+              </Link>
+              <Link href={"/"} className="hover:underline cursor-pointer">
+                Whatsapp
+              </Link>
+              <Link href={"/"} className="hover:underline cursor-pointer">
+                Instagram
+              </Link>
             </div>
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
               <h1 className="font-bold text-white">Support</h1>
-              <p className="hover:underline cursor-pointer">Contact Us</p>
-              <p className="hover:underline cursor-pointer">Privacy Policy</p>
-              <p className="hover:underline cursor-pointer">
+              <Link
+                href={"/privacy-policy"}
+                className="hover:underline cursor-pointer"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href={"/terms-conditions"}
+                className="hover:underline cursor-pointer"
+              >
                 Terms and Conditions
-              </p>
+              </Link>
+              <Link href={"/"} className="hover:underline cursor-pointer">
+                Registration Procedure
+              </Link>
             </div>
           </div>
           <div className="flex flex-col gap-2 lg:w-1/3">
