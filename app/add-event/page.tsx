@@ -33,13 +33,13 @@ import * as z from "zod";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
-  desc: z.string().min(2).max(50),
+  desc: z.string(),
   team_size: z.object({
     max: z.string().min(1).max(2),
     min: z.string().min(1).max(2),
   }),
-  student_co: z.string().min(2).max(100),
-  faculty_co: z.string().min(2).max(100),
+  student_co: z.string(),
+  faculty_co: z.string(),
   entry_fee: z.string().min(2).max(50),
   banner: z.string().min(2).max(50),
   venue: z.string().min(2).max(50),

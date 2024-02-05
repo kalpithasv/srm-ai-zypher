@@ -10,7 +10,11 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
     async signIn({ profile }) {
-      if (profile?.email === "vetrichanakyha2003@gmail.com") return true;
+      if (
+        profile?.email === "vetrichanakyha2003@gmail.com" ||
+        profile?.email === "charankarthikeyanchn@gmail.com"
+      )
+        return true;
       return false;
     },
   },
