@@ -74,7 +74,7 @@ const Card = ({ className, title, description, Icon }: CardProps) => {
       }}
       className={cn(
         className,
-        "group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-white/40 sm:mx-auto sm:rounded-lg sm:px-10"
+        "group relative cursor-pointer overflow-hidden bg-white/90 backdrop-blur-xl px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-white/40 sm:mx-auto sm:rounded-lg sm:px-10"
       )}
     >
       <span className="absolute top-10 z-0 h-20 w-20 invisible group-hover:visible rounded-full gradient transition-all duration-700 group-hover:w-full group-hover:h-full group-hover:scale-150"></span>
