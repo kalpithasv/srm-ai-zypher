@@ -32,6 +32,7 @@ const EventsPage = async () => {
       faculty_co: data.faculty_co,
       entry_fee: data.entry_fee,
       banner: data.banner,
+      rules: data.rules,
       venue: data.venue,
       time: data.time,
       type: data.type,
@@ -72,7 +73,7 @@ const EventsPage = async () => {
             Technical Events
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16 gap-4">
             {events
               .filter((event) => event.type == "technical")
               .map((event, index) => {
@@ -91,7 +92,7 @@ const EventsPage = async () => {
             Non Technical Events
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16 gap-4">
             {events
               .filter((event) => event.type == "non-technical")
               .map((event, index) => {

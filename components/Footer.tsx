@@ -90,7 +90,7 @@ const Footer = () => {
         <div className="text-nav flex flex-col text-center md:text-left md:flex-row md:gap-4">
           <p className="text-sm">© 2024 AI Zypher</p>•
           <p className="text-sm hover:underline cursor-pointer">
-            Designed and Developed by Students of Dept.of CSE AIML
+            Designed and Developed by the Students of Dept.of CSE AIML
           </p>
         </div>
         <div className=" text-nav justify-center flex gap-3 items-center">

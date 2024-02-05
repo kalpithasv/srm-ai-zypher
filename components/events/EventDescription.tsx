@@ -71,6 +71,18 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
           <p className="text-justify text-gray-400 text-base">{event.desc}</p>
         </div>
 
+        <div className="flex flex-col gap-2 my-4">
+          <h1 className="text-xl font-semibold">Event Rules</h1>
+          {event.rules.split("•").map((rule, index) => {
+            if (index === 0) return;
+            return (
+              <p key={index} className="text-justify text-gray-400 text-base">
+                • {rule}
+              </p>
+            );
+          })}
+        </div>
+
         <div className="mt-8 flex flex-col md:flex-row justify-between gap-8">
           <p className="font-semibold text-xl">
             Entry Fee:{" "}

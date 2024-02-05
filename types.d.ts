@@ -24,6 +24,7 @@ type EventType = {
     contact: string;
   }[];
   entry_fee: number;
+  rules: string;
   banner: string;
   id: string;
   venue: string;
