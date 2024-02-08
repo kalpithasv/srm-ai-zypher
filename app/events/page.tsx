@@ -36,6 +36,7 @@ const EventsPage = async () => {
       venue: data.venue,
       time: data.time,
       type: data.type,
+      form: data.form,
     };
   });
 

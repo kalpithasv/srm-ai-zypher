@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { CalendarDays, Clock, MapPin, UserPlus } from "lucide-react";
+import Link from "next/link";
 
 interface EventDescriptionProps {
   event: EventType;
@@ -32,7 +33,9 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
       <div className="container-fix">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <p className="text-lg  md:text-3xl font-semibold">{event.title}</p>
-          <Button>Register</Button>
+          <Link href={event.form} target="_blank">
+            <Button>Register</Button>
+          </Link>
         </div>
 
         <div className="my-8 flex flex-col md:flex-row md:items-center md:justify-between gap-1">
@@ -55,7 +58,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
             <UserPlus className="md:w-8 md:h-8 w-5 h-5 text-ui-primary" />
             <p className="font-medium text-base md:text-lg">Team Size:</p>
             <p className="font-medium text-base md:text-lg">
-              {event.team_size.min} - {event.team_size.max}
+              {event.team_size.max}
             </p>
           </div>
         </div>
