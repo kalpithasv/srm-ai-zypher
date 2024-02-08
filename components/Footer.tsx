@@ -89,7 +89,7 @@ const Footer = () => {
       <div className="p-4 flex flex-col gap-4 md:flex-row md:justify-between md:px-16 xl:max-w-7xl xl:mx-auto ">
         <div className="text-nav flex flex-col text-center md:text-left md:flex-row md:gap-4">
           <p className="text-sm">© 2024 AI Zypher</p>•
-          <Link href={"https://github.com/chanakyha"}>
+          <Link target="_blank" href={"https://github.com/chanakyha"}>
             <p className="text-sm hover:underline cursor-pointer">
               Designed and Developed by the Students of SRMRMP
             </p>
