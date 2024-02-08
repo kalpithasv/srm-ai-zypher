@@ -3,10 +3,10 @@ const TermsAndConditionPage = () => {
     <div className="h-fix">
       <div className="container-fix flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <h1 className="text-left text-2xl text-white font-semibold underline underline-offset-8 decoration-ui-primary">
+          <h1 className=" text-2xl text-center  text-white font-semibold underline underline-offset-8 decoration-ui-primary">
             Terms and Conditions
           </h1>
-          <p className="text-foreground/60 text-base text-justify">
+          <p className=" text-justify text-foreground/60 text-base">
             These terms and conditions govern your participation in the AI
             ZYPHER Events. By registering for or attending the events in AI
             ZYPHER, you agree to comply with these Terms.
