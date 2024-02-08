@@ -1,12 +1,8 @@
 import Marquee from "react-fast-marquee";
-
-import GoogleImage from "@/images/sponsors/google.webp";
-import MicrosoftImage from "@/images/sponsors/microsoft.png";
-import GithubImage from "@/images/sponsors/github.png";
 import Image, { StaticImageData } from "next/image";
 
 const Sponsors = () => {
-  const sponsorImages = [GoogleImage, MicrosoftImage, GithubImage];
+  const sponsorImages: StaticImageData[] = [];
   return (
     <div className="bg-ui-lightBg py-4 px-4 md:px-16">
       <h1 className="text-center text-2xl text-black font-semibold underline underline-offset-8 decoration-ui-primary">

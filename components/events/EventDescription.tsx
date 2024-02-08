@@ -38,7 +38,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
       <div className="container-fix">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <p className="text-lg  md:text-3xl font-semibold">{event.title}</p>
-          <RegisterEventModal event={event} />
+          <Button>Register</Button>
         </div>
 
         <div className="my-8 flex flex-col md:flex-row md:items-center md:justify-between gap-1">

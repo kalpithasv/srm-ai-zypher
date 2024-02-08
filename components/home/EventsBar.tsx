@@ -30,11 +30,13 @@ const EventsBar = () => {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 container-fix px-0 md:px-16 xl:max-w-6xl">
             <Card
+              redirect={"/events"}
               title="Technical Events"
               Icon={TerminalSquareIcon}
               description="Technical events are gatherings or conferences that focus on various aspects of technology, innovation, and industry-specific advancements. These events serve as platforms for professionals, experts, enthusiasts, and industry leaders to come together, share knowledge, and discuss the latest trends and developments in their respective fields."
             />
             <Card
+              redirect={"/events"}
               title="Non Technical Events"
               Icon={Gamepad2Icon}
               description="Occaecat ut esse cillum sint velit qui velit mollit Lorem ad. Amet aliqua aute consectetur irure enim aliquip cillum ut. Ullamco aliqua eu non ea proident minim et dolore aliqua consequat labore laborum qui."
@@ -42,6 +44,7 @@ const EventsBar = () => {
             <Card
               title="Hackathon"
               Icon={GitCompare}
+              redirect={"/events/Az008"}
               description="Non exercitation do nulla et eu voluptate nostrud et reprehenderit adipisicing quis. Anim anim qui magna quis officia sint ea commodo proident ex tempor aliquip magna. Nostrud et veniam occaecat consequat excepteur aliquip veniam exercitation."
               className="md:col-span-2"
             />
@@ -58,10 +61,11 @@ interface CardProps {
   className?: string;
   title: string;
   description: string;
+  redirect: string;
   Icon: LucideIcon;
 }
 
-const Card = ({ className, title, description, Icon }: CardProps) => {
+const Card = ({ className, title, description, Icon, redirect }: CardProps) => {
   const ICON = Icon;
 
   return (
@@ -92,7 +96,7 @@ const Card = ({ className, title, description, Icon }: CardProps) => {
             variant={"secondary"}
             asChild
           >
-            <Link href={"/events"}>Explore</Link>
+            <Link href={redirect!}>Explore</Link>
           </Button>
         </div>
         <div className="space-y-6 pt-5 text-sm text-justify font-medium text-gray-600 transition-all duration-500">

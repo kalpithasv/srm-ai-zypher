@@ -27,7 +27,12 @@ const EventsDescriptionPage = async ({
   const eventRef = doc(db, "events", eventId);
   const eventData = await getDoc(eventRef);
 
-  if (!eventData.exists()) return <p>Page not found</p>;
+  if (!eventData.exists())
+    return (
+      <p className="h-fix text-destructive flex justify-center items-center font-medium text-2xl animate-pulse">
+        Event not found
+      </p>
+    );
 
   const event = {
     id: eventData.id,

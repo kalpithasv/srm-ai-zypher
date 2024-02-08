@@ -14,10 +14,10 @@ const SponsorsPage = () => {
         </h1>
 
         <div className="container-fix grid grid-cols-1 gap-4">
-          <SponsorCategory images={sponsorImages} title="Diamond Sponsors" />
+          {/* <SponsorCategory images={sponsorImages} title="Diamond Sponsors" />
           <SponsorCategory images={sponsorImages} title="Certificate Sponsor" />
           <SponsorCategory images={sponsorImages} title="Logistics Partner" />
-          <SponsorCategory images={sponsorImages} title="Beverage Sponsor" />
+          <SponsorCategory images={sponsorImages} title="Beverage Sponsor" /> */}
         </div>
       </div>
     </div>

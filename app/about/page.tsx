@@ -115,7 +115,7 @@ const AboutPage = () => {
               >
                 <Image
                   className="rounded-md w-fit h-32 hover:shadow-white/20 hover:shadow-xl transition-all duration-500"
-                  src={require("@/images/event-logo.jpg")}
+                  src={require("@/images/event-logo.jpeg")}
                   alt="srm"
                   loading="lazy"
                 />

@@ -24,6 +24,10 @@ const Header = () => {
   };
   const navContents: navContent[] = [
     {
+      name: "Home",
+      href: "/",
+    },
+    {
       name: "Events",
       href: "/events",
     },
@@ -89,23 +93,6 @@ const Header = () => {
               </Link>
             );
           })}
-          <Button
-            onClick={() =>
-              session?.user ? router.push("/dashboard") : signIn("google")
-            }
-            className="font-bold"
-          >
-            {session?.user ? "View Dashboard" : "Login"}
-          </Button>
-          {session?.user && (
-            <Button
-              onClick={() => signOut()}
-              variant={"destructive"}
-              className="font-bold"
-            >
-              Signout
-            </Button>
-          )}
         </div>
         <Sheet>
           <SheetTrigger className="md:hidden">
@@ -143,20 +130,6 @@ const Header = () => {
                     </SheetClose>
                   );
                 })}
-                <SheetFooter className="mt-5">
-                  <SheetClose asChild>
-                    <Button
-                      onClick={() =>
-                        session?.user
-                          ? router.push("/dashboard")
-                          : signIn("google")
-                      }
-                      className="font-bold"
-                    >
-                      {session?.user ? "View Dashboard" : "Login"}
-                    </Button>
-                  </SheetClose>
-                </SheetFooter>
               </SheetDescription>
             </SheetHeader>
           </SheetContent>

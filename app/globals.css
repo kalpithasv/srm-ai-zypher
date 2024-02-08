@@ -88,3 +88,15 @@
     @apply bg-gradient-to-r from-ui-primary to-ui-secondary;
   }
 }
+
+* {
+  scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overflow-x: hidden !important;
+}

@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 
-const mont = Montserrat({ subsets: ["latin"], weight: ["400"] });
+const mont = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Zypher'24",
