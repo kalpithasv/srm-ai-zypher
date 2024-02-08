@@ -16,7 +16,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
 const Header = () => {
   type navContent = {
     name: string;
@@ -61,8 +60,6 @@ const Header = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navRef, path]);
-
-  const { data: session } = useSession();
 
   return (
     <div

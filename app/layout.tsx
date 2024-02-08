@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 
 const mont = Montserrat({ subsets: ["latin"] });
@@ -19,15 +18,15 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
   return (
     <html suppressHydrationWarning lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body suppressHydrationWarning className={mont.className}>
-        <SessionProvider session={session}>
-          <Header />
-          {children}
-          <Footer />
-        </SessionProvider>
+        <Header />
+        {children}
+        <Footer />
         <Toaster />
       </body>
     </html>
