@@ -2,14 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "../ui/button";
-import {
-  ArrowBigUp,
-  CalendarDays,
-  Clock,
-  MapPin,
-  UserPlus,
-} from "lucide-react";
-import RegisterEventModal from "./RegisterEventModal";
+import { CalendarDays, Clock, MapPin, UserPlus } from "lucide-react";
 
 interface EventDescriptionProps {
   event: EventType;
