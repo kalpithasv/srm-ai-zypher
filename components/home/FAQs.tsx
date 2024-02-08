@@ -45,8 +45,10 @@ const FAQs = () => {
             {faqs.map(({ question, answer }: faqType, index: number) => {
               return (
                 <AccordionItem key={index} value={index.toLocaleString()}>
-                  <AccordionTrigger>{question}</AccordionTrigger>
-                  <AccordionContent className="text-ui-primary">
+                  <AccordionTrigger className="text-left">
+                    {question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-ui-primary text-left">
                     {answer}
                   </AccordionContent>
                 </AccordionItem>
