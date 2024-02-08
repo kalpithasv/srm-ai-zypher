@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SessionProvider from "@/components/SessionProvider";
+import Image from "next/image";
 
 const mont = Montserrat({ subsets: ["latin"] });
 
@@ -21,7 +22,13 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.jpg" sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href="/favicon.jpg"
+          type="image/ico"
+          sizes="any"
+        />
       </head>
       <body suppressHydrationWarning className={mont.className}>
         <Header />
