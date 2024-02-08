@@ -23,6 +23,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
           alt="event-banner"
           src={event.banner}
           width={1920}
+          referrerPolicy="no-referrer"
           height={1080}
           className="w-full h-full lg:rounded-lg"
         />

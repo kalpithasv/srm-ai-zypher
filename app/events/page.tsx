@@ -73,9 +73,12 @@ const EventsPage = async () => {
             Technical Events
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4 md:my-16 gap-4 items-x">
             {events
-              .filter((event) => event.type == "technical")
+              .filter(
+                (event) =>
+                  event.type == "technical" || event.type == "hackathon"
+              )
               .map((event, index) => {
                 return <EventCard key={index} event={event} />;
               })}

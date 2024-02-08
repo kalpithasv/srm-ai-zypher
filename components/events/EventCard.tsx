@@ -10,7 +10,7 @@ interface EventCardProps {
 const EventCard = ({ event }: EventCardProps) => {
   return (
     <Link href={`/events/${event.id}`}>
-      <div className="border bg-black border-white/20 rounded-lg hover:scale-105 duration-300 ease-in-out transition-all cursor-pointer active:scale-100">
+      <div className="border bg-black border-white/20 rounded-lg md:hover:scale-105 duration-300 ease-in-out transition-all cursor-pointer md:active:scale-100">
         <Image
           alt="event-banner"
           src={event.banner}
