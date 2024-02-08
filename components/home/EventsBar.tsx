@@ -39,13 +39,13 @@ const EventsBar = () => {
               redirect={"/events"}
               title="Non Technical Events"
               Icon={Gamepad2Icon}
-              description="Occaecat ut esse cillum sint velit qui velit mollit Lorem ad. Amet aliqua aute consectetur irure enim aliquip cillum ut. Ullamco aliqua eu non ea proident minim et dolore aliqua consequat labore laborum qui."
+              description="Non-technical events are gatherings or conferences that emphasize diverse aspects outside the realm of technology, encompassing fields such as arts, culture, entertainment, and other non-specialized domains. These events provide platforms for individuals from various backgrounds, including artists, creatives, enthusiasts, and leaders, to converge, exchange ideas, and explore the latest trends and innovations in their respective non-technical domains. They serve as opportunities to foster collaboration, share insights, and celebrate creativity across a wide spectrum of interests.."
             />
             <Card
               title="Hackathon"
               Icon={GitCompare}
               redirect={"/events/Az008"}
-              description="Non exercitation do nulla et eu voluptate nostrud et reprehenderit adipisicing quis. Anim anim qui magna quis officia sint ea commodo proident ex tempor aliquip magna. Nostrud et veniam occaecat consequat excepteur aliquip veniam exercitation."
+              description="A data science hackathon is a competitive event where participants use their analytical and programming skills to tackle real-world problems using data. Teams typically have a limited timeframe, often a day or two, to explore, analyze, and develop solutions to the given challenge. Participants leverage various data science techniques such as machine learning, statistical analysis, and data visualization to derive insights and build predictive models. These hackathons foster collaboration, creativity, and innovation within the data science community while offering opportunities for networking and skill development. Winners are often determined based on the effectiveness, creativity, and scalability of their solutions."
               className="md:col-span-2"
             />
           </div>
@@ -81,14 +81,14 @@ const Card = ({ className, title, description, Icon, redirect }: CardProps) => {
         "group relative cursor-pointer overflow-hidden bg-white/90 backdrop-blur-xl px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-white/40 sm:mx-auto sm:rounded-lg sm:px-10"
       )}
     >
-      <span className="absolute top-10 z-0 h-20 w-20 invisible group-hover:visible rounded-full gradient transition-all duration-700 group-hover:w-full group-hover:h-full group-hover:scale-150"></span>
+      <span className="absolute top-10 z-0 h-20 w-20 invisible md:group-hover:visible rounded-full gradient transition-all duration-700 md:group-hover:w-full group-hover:h-full group-hover:scale-150"></span>
       <div className="relative z-10 ">
         <div className="flex flex-col lg:flex-row items-center gap-4">
           <span className="grid h-20 w-20 place-items-center rounded-full bg-ui-primary transition-all duration-300 group-hover:bg-ui-primary/90 group-hover:border group-hover:border-white/80">
             <ICON className="h-10 w-10 text-white transition-all" />
           </span>
 
-          <p className="space-y-6 text-center md:text-left font-semibold text-base line-clamp-2 leading-7 text-gray-600 transition-all duration-300 group-hover:text-black">
+          <p className="space-y-6 text-center md:text-left font-semibold text-base line-clamp-2 text-gray-600 transition-all duration-300 group-hover:text-black">
             {title}
           </p>
           <Button
@@ -100,7 +100,7 @@ const Card = ({ className, title, description, Icon, redirect }: CardProps) => {
           </Button>
         </div>
         <div className="space-y-6 pt-5 text-sm text-justify font-medium text-gray-600 transition-all duration-500">
-          <p>{description}</p>
+          <p className="line-clamp-5">{description}</p>
         </div>
       </div>
     </motion.div>
