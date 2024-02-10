@@ -65,7 +65,7 @@ const Hero = () => {
             <TimeCard type="Seconds" time={timeRemaining.seconds} />
           </div>
         </div>
-        <div className="absolute animate-bounce md:animate-pulse text-white/90 md:right-0 bottom-10 text-xs md:bottom-14 md:rotate-90 flex flex-col md:flex-row items-center md:gap-2">
+        <div className="absolute animate-bounce md:animate-pulse text-white/90 md:right-0 bottom-20 text-xs md:bottom-14 md:rotate-90 flex flex-col md:flex-row items-center md:gap-2">
           Scroll Down <ArrowRight className="rotate-90 md:rotate-0 w-3 h-3 " />
         </div>
       </div>
