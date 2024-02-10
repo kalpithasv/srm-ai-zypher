@@ -1,9 +1,4 @@
-import {
-  ArrowRight,
-  FacebookIcon,
-  LinkedinIcon,
-  TwitterIcon,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import SRMLogo from "@/images/srm-logo.png";
 import Link from "next/link";
@@ -40,7 +35,10 @@ const Footer = () => {
             </div>
             <div className="lg:gap-1 lg:text-sm lg:flex lg:flex-col">
               <h1 className="font-bold text-white">Social Media</h1>
-              <Link href={"/"} className="hover:underline cursor-pointer">
+              <Link
+                href={"mailto:zypher2k24@gmail.com"}
+                className="hover:underline cursor-pointer"
+              >
                 <p>Email</p>
               </Link>
               <Link
@@ -89,10 +87,10 @@ const Footer = () => {
               <input
                 type="text"
                 readOnly
-                value={"ai-zypher@gmail.com"}
+                value={"zypher2k24@gmail.com"}
                 className="bg-transparent flex-1 outline-none text-sm"
               />
-              <Link href={"mailto:ai-zypher@gmail.com"}>
+              <Link href={"mailto:zypher2k24@gmail.com"}>
                 <ArrowRight className="hover:translate-x-1 transition-all duration-300 ease-in-out cursor-pointer" />
               </Link>
             </div>
@@ -102,18 +100,13 @@ const Footer = () => {
       <div className="w-full h-[1px] bg-gray-300" />
       <div className="p-4 flex flex-col gap-4 md:flex-row md:justify-between md:px-16 xl:max-w-7xl xl:mx-auto ">
         <div className="text-nav flex flex-col text-center md:text-left md:flex-row md:gap-4">
-          <p className="text-sm">© 2024 AI Zypher</p>•
-          <Link target="_blank" href={"https://github.com/chanakyha"}>
-            <p className="text-sm hover:underline cursor-pointer">
-              Designed and Developed by the Students of SRMRMP
-            </p>
-          </Link>
+          <p className="text-sm">© 2024 AI Zypher</p>
         </div>
-        <div className=" text-nav justify-center flex gap-3 items-center">
-          <TwitterIcon className="w-5 h-5 cursor-pointer hover:scale-105 duration-200 transition-all ease-out" />
-          <FacebookIcon className="w-5 h-5 cursor-pointer hover:scale-105 duration-200 transition-all ease-out" />
-          <LinkedinIcon className="w-5 h-5 cursor-pointer hover:scale-105 duration-200 transition-all ease-out" />
-        </div>
+        <Link target="_blank" href={"https://github.com/chanakyha"}>
+          <p className="text-sm text-center hover:underline cursor-pointer">
+            Designed and Developed by the Students of SRMRMP
+          </p>
+        </Link>
       </div>
     </div>
   );
