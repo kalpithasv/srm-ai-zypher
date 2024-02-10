@@ -2,10 +2,37 @@ import EventsDescription from "@/components/events/EventDescription";
 
 import { db } from "@/backend/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface EventsDescriptionPageProps {
   params: {
     eventId: string;
+  };
+}
+
+type Props = {
+  params: { eventId: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const eventId = params.eventId;
+  const eventRef = doc(db, "events", eventId);
+  const eventData = await getDoc(eventRef);
+
+  if (!eventData.exists()) {
+    return {
+      title: "Event Not Fount",
+      description: "Zypher 2024",
+    };
+  }
+
+  return {
+    title: eventData.data().title,
+    description: eventData.data().desc,
   };
 }
 

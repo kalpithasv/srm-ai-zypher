@@ -64,7 +64,13 @@ const Footer = () => {
               >
                 <p>Terms and Conditions</p>
               </Link>
-              <Link href={"/"} className="hover:underline cursor-pointer">
+              <Link
+                href={
+                  "https://firebasestorage.googleapis.com/v0/b/srm-ai-zypher.appspot.com/o/gpay%20using%20bank%20account.pdf?alt=media&token=75f72ab9-aefa-41b6-8e5d-060cb9001c52"
+                }
+                target="_blank"
+                className="hover:underline cursor-pointer"
+              >
                 <p>Registration Procedure</p>
               </Link>
             </div>
