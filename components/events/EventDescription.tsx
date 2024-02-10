@@ -13,7 +13,7 @@ interface EventDescriptionProps {
 const EventDescription = ({ event }: EventDescriptionProps) => {
   return (
     <div className="relative">
-      <div className="container-fix pb-4 md:py-4 bg-black">
+      <div className="container-fix pb-4 md:py-4">
         <Alert className="bg-yellow-800/25 text-yellow-500 animate-pulse">
           <Terminal className="h-4 w-4" />
           <AlertTitle>
