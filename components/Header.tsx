@@ -41,10 +41,7 @@ const Header = () => {
   ];
 
   const path = usePathname();
-
   const navRef = useRef<HTMLDivElement>(null);
-
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {

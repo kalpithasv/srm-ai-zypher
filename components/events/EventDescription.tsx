@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { CalendarDays, Clock, MapPin, UserPlus } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Terminal, UserPlus } from "lucide-react";
 import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
 interface EventDescriptionProps {
   event: EventType;
@@ -12,6 +13,15 @@ interface EventDescriptionProps {
 const EventDescription = ({ event }: EventDescriptionProps) => {
   return (
     <div className="relative">
+      <div className="container-fix pb-4 md:py-4 bg-black">
+        <Alert className="bg-yellow-800/25 text-yellow-500 animate-pulse">
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>
+            Participants from AIML Department of SRMIST Ramapuram are not
+            allowed
+          </AlertTitle>
+        </Alert>
+      </div>
       <Image
         alt="event-banner"
         src={event.banner}
@@ -19,7 +29,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
         height={1080}
         className="w-full h-full absolute top-0 opacity-[0.05] -z-[10] object-cover object-center"
       />
-      <div className="lg:max-w-7xl lg:mx-auto lg:px-16 lg:pt-16">
+      <div className="lg:max-w-7xl lg:mx-auto lg:px-16 lg:pt-1">
         <Image
           alt="event-banner"
           src={event.banner}
@@ -29,7 +39,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
           className="w-full h-full lg:rounded-lg"
         />
       </div>
-      <div className="container-fix  backdrop-blur-sm bg-black/10 w-fit h-full">
+      <div className="container-fix backdrop-blur-sm bg-black/10 w-fit h-full">
         <div className="">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <p className="text-lg  md:text-3xl font-semibold">{event.title}</p>
