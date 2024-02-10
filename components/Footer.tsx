@@ -43,10 +43,18 @@ const Footer = () => {
               <Link href={"/"} className="hover:underline cursor-pointer">
                 <p>Email</p>
               </Link>
-              <Link href={"/"} className="hover:underline cursor-pointer">
+              <Link
+                target="_blank"
+                href={"https://chat.whatsapp.com/G3SGuQDXQ4kBlqWqYdcZnO"}
+                className="hover:underline cursor-pointer"
+              >
                 <p>Whatsapp</p>
               </Link>
-              <Link href={"/"} className="hover:underline cursor-pointer">
+              <Link
+                target="_blank"
+                href={"https://www.instagram.com/zypher_2k24/"}
+                className="hover:underline cursor-pointer"
+              >
                 <p>Instagram</p>
               </Link>
             </div>
