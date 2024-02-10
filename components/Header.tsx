@@ -99,18 +99,6 @@ const Header = () => {
             <SheetHeader>
               <SheetTitle>Contents</SheetTitle>
               <SheetDescription className="flex flex-col">
-                <SheetClose asChild>
-                  <Link href={"/"}>
-                    <div
-                      className={cn(
-                        "text-base flex items-center justify-between font-medium p-2 tracking-wider",
-                        path === "/" && " text-ui-primary font-bold"
-                      )}
-                    >
-                      <p>Home</p>
-                    </div>
-                  </Link>
-                </SheetClose>
                 {navContents.map((item, index) => {
                   return (
                     <SheetClose key={index} asChild>
