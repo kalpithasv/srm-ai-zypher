@@ -10,7 +10,7 @@ const FAQs = () => {
     {
       question: "Who can participate in the technical event?",
       answer:
-        "The event is open to students, faculty members, industry professionals, and anyone with a keen interest in technology. Participants from diverse backgrounds and expertise levels are encouraged to join.",
+        "The event is open to for Engineering and Technology students, Participants from diverse backgrounds and expertise levels are encouraged to join.",
     },
     {
       question: "Can I receive a certificate of participation?",
