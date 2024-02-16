@@ -43,7 +43,7 @@ const Footer = () => {
               </Link>
               <Link
                 target="_blank"
-                href={"https://chat.whatsapp.com/G3SGuQDXQ4kBlqWqYdcZnO"}
+                href={"https://wa.me/+917200836551"}
                 className="hover:underline cursor-pointer"
               >
                 <p>Whatsapp</p>
