@@ -1,5 +1,7 @@
 import Image from "next/image";
 import SuccessImage from "@/images/success.png";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const SuccessPage = () => {
   return (
@@ -14,6 +16,17 @@ const SuccessPage = () => {
       <p className="font-semi-bold text-ui-primary text-2xl">
         Payment Successful
       </p>
+
+      <div>
+        <p>
+          Please Join the Whatsapp Group Link,{" "}
+          <Button className="text-ui-primary" variant={"link"}>
+            <Link href={"https://chat.whatsapp.com/G3SGuQDXQ4kBlqWqYdcZnO"}>
+              Click Here
+            </Link>
+          </Button>{" "}
+        </p>
+      </div>
     </div>
   );
 };
