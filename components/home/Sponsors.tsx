@@ -1,13 +1,8 @@
 import Marquee from "react-fast-marquee";
 import Image, { StaticImageData } from "next/image";
+import { sponsorImages } from "@/lib/constants";
 
 const Sponsors = () => {
-  const sponsorImages: StaticImageData[] = [
-    require("@/images/sponsors/A R PNG.png"),
-    require("@/images/sponsors/Original.png"),
-    require("@/images/sponsors/WhatsApp Image 2024-02-16 at 11.13.53.jpeg"),
-    require("@/images/sponsors/WhatsApp Image 2024-02-16 at 11.44.20.jpeg"),
-  ];
   return (
     <div className="bg-ui-lightBg py-4 px-4 md:px-16">
       <h1 className="text-center text-2xl text-black font-semibold underline underline-offset-8 decoration-ui-primary">

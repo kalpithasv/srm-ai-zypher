@@ -1,9 +1,5 @@
-import GithubLogo from "@/images/sponsors/github.png";
-import GoogleLogo from "@/images/sponsors/google.webp";
-import MicrosoftLogo from "@/images/sponsors/microsoft.png";
+import { sponsorImages } from "@/lib/constants";
 import Image, { StaticImageData } from "next/image";
-
-const sponsorImages = [GithubLogo, GoogleLogo, MicrosoftLogo, GithubLogo];
 
 const SponsorsPage = () => {
   return (
@@ -14,8 +10,8 @@ const SponsorsPage = () => {
         </h1>
 
         <div className="container-fix grid grid-cols-1 gap-4">
-          {/* <SponsorCategory images={sponsorImages} title="Diamond Sponsors" />
-          <SponsorCategory images={sponsorImages} title="Certificate Sponsor" />
+          <SponsorCategory images={sponsorImages} title="Souvenir Sponsors" />
+          {/* <SponsorCategory images={sponsorImages} title="Certificate Sponsor" />
           <SponsorCategory images={sponsorImages} title="Logistics Partner" />
           <SponsorCategory images={sponsorImages} title="Beverage Sponsor" /> */}
         </div>
