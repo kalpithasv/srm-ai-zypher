@@ -42,7 +42,7 @@ const EventsPage = async () => {
         <Image
           alt="event-banner"
           src={
-            "https://firebasestorage.googleapis.com/v0/b/srm-ai-zypher.appspot.com/o/PRINT-01.jpg?alt=media&token=72a23dae-f0b8-4d79-9418-b817dbe874f6"
+            "https://firebasestorage.googleapis.com/v0/b/srm-ai-zypher.appspot.com/o/WhatsApp%20Image%202024-02-06%20at%2015.47.53%20(1).jpeg?alt=media&token=cfa2b78e-3e60-4f5b-9cf8-3e8d9e03d31c"
           }
           width={1920}
           height={1080}
