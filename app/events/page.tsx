@@ -26,6 +26,7 @@ const EventsPage = async () => {
       time: data.time,
       type: data.type,
       form: data.form,
+      closed: data.closed,
     };
   });
 

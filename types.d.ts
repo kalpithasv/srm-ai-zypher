@@ -31,4 +31,5 @@ type EventType = {
   time: string;
   type: "technical" | "non-technical" | "hackathon";
   form: string;
+  closed: boolean;
 };
