@@ -44,7 +44,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <p className="text-lg  md:text-3xl font-semibold">{event.title}</p>
             <Link href={event.form} target="_blank">
-              <Button>Register</Button>
+              <Button disabled>Register Paused</Button>
             </Link>
           </div>
 
