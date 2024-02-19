@@ -20,6 +20,7 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
             Participants from AIML dept of SRMIST Ramapuram and Arts, Science,
             Humanities (Non B.E/B.Tech) Students of other colleges are not
             allowed <br />
+            <br />
             <Link href={"/terms-and-conditions"}>Terms and Conditions</Link>,
             <Link href={"/privacy-policy"}>Privacy Policy</Link>
           </AlertTitle>
