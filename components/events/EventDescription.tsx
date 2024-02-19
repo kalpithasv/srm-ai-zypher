@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { CalendarDays, Clock, MapPin, Terminal, UserPlus } from "lucide-react";
 import Link from "next/link";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Alert, AlertTitle } from "../ui/alert";
 
 interface EventDescriptionProps {
   event: EventType;
@@ -17,8 +17,11 @@ const EventDescription = ({ event }: EventDescriptionProps) => {
         <Alert className="bg-yellow-800/25 text-yellow-500 animate-pulse">
           <Terminal className="h-4 w-4" />
           <AlertTitle>
-            Participants from AIML Department of SRMIST Ramapuram are not
-            allowed
+            Participants from AIML dept of SRMIST Ramapuram and Arts, Science,
+            Humanities (Non B.E/B.Tech) Students of other colleges are not
+            allowed{" "}
+            <Link href={"/terms-and-conditions"}>Terms and Conditions</Link>,
+            <Link href={"/privacy-policy"}>Privacy Policy</Link>
           </AlertTitle>
         </Alert>
       </div>
