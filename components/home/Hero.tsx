@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn, getTimeRemaining } from "@/lib/utils";
 
-const eventDate = new Date("2024-02-20");
+const eventDate = new Date("February 20, 2024 7:30:00");
 
 const Hero = () => {
   const text = "ZYPHER'24".split("");
